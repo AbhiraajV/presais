@@ -1,6 +1,5 @@
 "use client"
 
-import { TrendingUp } from "lucide-react"
 import { Bar, BarChart, CartesianGrid, XAxis } from "recharts"
 
 import {
@@ -17,6 +16,10 @@ import {
   ChartTooltipContent,
 } from "@/components/ui/chart"
 import { Badge } from "../ui/badge"
+interface ChartDataItem {
+  [key: string]: string | number; // Adjust as per your data structure
+}
+
 // const chartData = [
 //   { month: "January", desktop: 186, mobile: 80 },
 //   { month: "February", desktop: 305, mobile: 200 },
@@ -37,7 +40,7 @@ import { Badge } from "../ui/badge"
 //   },
 // } satisfies ChartConfig
 
-export function MultiBarComponent({title,dataKey,chartConfig,chartData}:{title:string,dataKey:string,chartConfig:ChartConfig,chartData:unknown[]}) {
+export function MultiBarComponent({title,dataKey,chartConfig,chartData}:{title:string,dataKey:string,chartConfig:ChartConfig,chartData:ChartDataItem[]}) {
   return (
     <Card className="w-full bg-[#282828] text-white h-fit border-none">
       <CardHeader>
@@ -66,7 +69,7 @@ export function MultiBarComponent({title,dataKey,chartConfig,chartData}:{title:s
         </ChartContainer>
       </CardContent>
       <CardFooter className="flex flex-wrap gap-1">
-        {chartData.map(cd=><Badge key={cd[dataKey]}>{cd[dataKey]} </Badge>)}
+        {chartData.map((cd)=><Badge key={cd[dataKey]}>{cd[dataKey]} </Badge>)}
       </CardFooter>
     </Card>
   )

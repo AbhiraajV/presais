@@ -15,7 +15,9 @@ import { Textarea } from "@/components/ui/textarea"
 import { Slider } from "@/components/ui/slider"
 import Link from "next/link"
 import { UserButton } from "@clerk/nextjs"
-import { User } from "@prisma/client"
+import {  User } from "@prisma/client"
+import BuyMeACookie from "./BuyMeACoffee"
+// import { getUserReports } from "@/app/actions/report.action"
 
 interface CardWithFormProps {
   onSubmit: (data: { name: string; description: string; count: number }) => void;
@@ -23,6 +25,7 @@ interface CardWithFormProps {
 }
 
 export default function HomePageForm({  onSubmit,user }: CardWithFormProps) {
+  // const [reports,setReports] = React.useState<Report[]>([]);
   const [name, setName] = React.useState("")
   const [saasDescription, setSaasDescription] = React.useState("")
   const [count, setCount] = React.useState(2)
@@ -32,6 +35,10 @@ export default function HomePageForm({  onSubmit,user }: CardWithFormProps) {
     onSubmit({ name, description: saasDescription, count })
   }
 
+  // React.useEffect(() => {
+  //   getUserReports(user.id).then(data=>setReports(data))
+  // }, [user])
+  
   const handleClear = () => {
     setName("")
     setSaasDescription("")
@@ -47,7 +54,6 @@ export default function HomePageForm({  onSubmit,user }: CardWithFormProps) {
       const remainingTime = endDate.getTime() - now.getTime();
 
       if (remainingTime <= 0) {
-        console.log("Timer has expired!");
         clearInterval(timerInterval);
         return;
       }
@@ -63,6 +69,7 @@ export default function HomePageForm({  onSubmit,user }: CardWithFormProps) {
     updateTimer();
   }
   function has24HoursPassed(inputTime: string): boolean {
+    if(!inputTime) return true;
     const givenDate = new Date(inputTime);
     const currentDate = new Date();
     const timeDifference = currentDate.getTime() - givenDate.getTime();
@@ -75,8 +82,8 @@ export default function HomePageForm({  onSubmit,user }: CardWithFormProps) {
   
   return (
     <Card className="relative">
-      <div className="absolute top-2 right-2">
-
+      <BuyMeACookie className="absolute top-[-60px] left-0"/>
+        <div className="absolute top-2 right-2 flex gap-1 items-center justify-center">
       <UserButton/>
       </div>
       <CardHeader>
@@ -107,13 +114,13 @@ export default function HomePageForm({  onSubmit,user }: CardWithFormProps) {
           </ul>
         </CardDescription>
       </CardHeader>
-      {!user.lastRequest || !has24HoursPassed(user.lastRequest?.toString()) && <CardContent className="text-xl font-extrabold ">
+      {user.lastRequest && !has24HoursPassed(user.lastRequest?.toString()) && <CardContent className="text-xl font-extrabold ">
         Next request in: {time}
         </CardContent>}
-      {!user.lastRequest || !has24HoursPassed(user.lastRequest?.toString()) &&<CardContent className="text-sm w-full mt-[-1rem] font-bold text-gray-500">
+      {user.lastRequest && !has24HoursPassed(user.lastRequest?.toString()) &&<CardContent className="text-sm w-full mt-[-1rem] font-bold text-gray-500">
         We have received your current request, <br/>an Email will be sent to you when your report is ready!
       </CardContent> }
-     {user.lastRequest && has24HoursPassed(user.lastRequest?.toString()) && <CardContent>
+     {(!user.lastRequest || has24HoursPassed(user.lastRequest?.toString())) && <CardContent>
         <form id="saas-form" onSubmit={handleSubmit}>
           <div className="grid w-full items-center gap-4">
             <div className="flex flex-col space-y-1.5">
@@ -150,9 +157,9 @@ export default function HomePageForm({  onSubmit,user }: CardWithFormProps) {
           </div>
         </form>
       </CardContent>}
-     {user.lastRequest && has24HoursPassed(user.lastRequest?.toString()) &&  <CardFooter className="flex justify-between">
+     {(!user.lastRequest || has24HoursPassed(user.lastRequest?.toString())) &&  <CardFooter className="flex justify-between">
         <Button variant="outline" onClick={handleClear}>Clear</Button>
-        <Button disabled={name.trim().length === 0 || saasDescription.trim().length <= 2}  type="submit" form="saas-form">Generate</Button>
+        <Button disabled={name?.trim().length === 0 || saasDescription?.trim().length <= 2}  type="submit" form="saas-form">Generate</Button>
       </CardFooter>}
       <CardFooter className="flex flex-col items-start justify-start">
         <Link className="text-sm font-bold text-blue-600 underline" href={'/report/b89872c5-a74b-4cd4-bba2-18dd46405615'}>

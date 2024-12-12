@@ -86,18 +86,24 @@ export default function DynamicMVAreaChart({ data }: DynamicAreaChartProps) {
               />
               <YAxis />
               <ChartTooltip
-                content={(
-                  <ChartTooltipContent
-                    formatter={(value: number) => [
-                      new Intl.NumberFormat().format(value),
-                      "Visits",
-                    ]}
-                    labelFormatter={(label: Date) =>
-                      formatDateToFullMonthYear(new Date(label))
-                    }
-                  />
-                )}
-              />
+  content={
+    <ChartTooltipContent
+      formatter={(value: unknown) => {
+        if (typeof value === "number") {
+          return [new Intl.NumberFormat().format(value), "Visits"];
+        }
+        return [String(value), "Visits"]; // Handle non-number cases gracefully
+      }}
+      labelFormatter={(label: unknown) => {
+        if (typeof label === "string" || label instanceof Date) {
+          return formatDateToFullMonthYear(new Date(label));
+        }
+        return String(label); // Fallback for unexpected types
+      }}
+    />
+  }
+/>
+
               <Area
                 type="monotone"
                 dataKey="visits"

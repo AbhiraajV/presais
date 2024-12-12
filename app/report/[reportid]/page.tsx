@@ -1,10 +1,12 @@
 import React from 'react'
 import prisma from '@/prisma'
-import { SimilarSiteData, SiteData } from '@/types';
+import { SimilarSite, SimilarSiteData, SiteData } from '@/types';
 import { AnalysisCardRenderer } from '@/components/report/AnalysisCard';
-
-async function Page({ params }: { params: { reportid: string } }) {
-    const reportId = (params as { reportid: string }).reportid;
+import BuyMeACookie from '@/components/BuyMeACoffee';
+type tParams = Promise<{ reportId: string }>;
+async function Page(props: { params: tParams }) {
+    const out = await props.params;
+  const reportId = out.reportId;
     const report = await prisma.report.findFirst({
         where:{
             id:reportId
@@ -25,18 +27,14 @@ async function Page({ params }: { params: { reportid: string } }) {
         }[]
         },
     }
-    const rep = competition_report[0];
-    console.log({competition_report})
-    competition_report.forEach((v,i)=>{
+    competition_report.forEach((v)=>{
         const ind = analysis_report.findIndex(ar=>{
-            console.log(v)
-            return ar?.SiteName?.trim().toLowerCase() === v?.Redirect?.trim().toLowerCase()
+            return ar?.SiteName?.trim().toLowerCase() === (v.Redirect as string)?.trim().toLowerCase()
         })
-        console.log({...analysis_report[ind],totalVisits:v.TotalVisits,similarSites:v.SimilarSites,tags:v.Tags})
-        analysis_report[ind] = {...analysis_report[ind],totalVisits:v.TotalVisits,similarSites:v.SimilarSites,tags:v.Tags}
+        analysis_report[ind] = {...analysis_report[ind],totalVisits:(v.TotalVisits as number),similarSites:v.SimilarSites,tags:v.Tags}
     })
     return (
-        <div className='bg-[#282828] text-white w-screen flex flex-wrap h-screen overflow-y-scroll overflow-x-hidden '>
+        <div className='bg-[#282828] relative text-white w-screen flex flex-wrap h-screen overflow-y-scroll overflow-x-hidden '>
            {/* <div className='flex gap-5 items-center justify-center '>
             <span className='text-2xl mb-5 font-extrabold border-b-4'>
                 Competitor's Analysis Reports
@@ -46,6 +44,7 @@ async function Page({ params }: { params: { reportid: string } }) {
             {/* <span className='text-2xl font-extrabold border-b-4'>
                 Competitors' Rival Reports
             </span> */}
+      <BuyMeACookie className="fixed z-[9999] top-[0px] right-0"/>
             
             <div className="p-6 max-w-md">
                 <div className="text-xsm font-extrabold underline text-gray-200">
@@ -60,7 +59,7 @@ async function Page({ params }: { params: { reportid: string } }) {
                 </div>
             </div>
 
-            <AnalysisCardRenderer reps={analysis_report}/>
+            <AnalysisCardRenderer reps={analysis_report as unknown as (SiteData & {similarSites:SimilarSite[]})[]}/>
            
         </div>
     )

@@ -12,15 +12,15 @@ type Props = {rep:SiteData & {similarSites:SimilarSite[]}}
 function AnalysisCard({rep}: Props) {
     
     function getFlagEmoji(countryCode:string) {
-    return countryCode.toUpperCase().replace(/./g, char => 
-        String.fromCodePoint(127397 + char.charCodeAt())
-    );
+      return countryCode.toUpperCase().replace(/./g, char => 
+          String.fromCodePoint(127397 + char.charCodeAt(0))
+      );
     }
     const formatNumber = (num: number) =>
-  num >= 1e9 ? `${(num / 1e9).toFixed(0)}B` :
-  num >= 1e6 ? `${(num / 1e6).toFixed(0)}M` :
-  num >= 1e3 ? `${(num / 1e3).toFixed(0)}T` :
-  num.toString();
+                num >= 1e9 ? `${(num / 1e9).toFixed(0)}B` :
+                num >= 1e6 ? `${(num / 1e6).toFixed(0)}M` :
+                num >= 1e3 ? `${(num / 1e3).toFixed(0)}T` :
+                num.toString();
 
 
   return (
@@ -40,7 +40,7 @@ function AnalysisCard({rep}: Props) {
                       <span className='font-medium text-xs mt-[-0.5rem]'>
                         {rep.Title} 
                       </span>
-                   {rep.LargeScreenshot && rep.LargeScreenshot.trim().length !== 0 &&  <Image src={rep.LargeScreenshot} width={250} height={250*3/4} alt=''/>}
+                   {rep.LargeScreenshot && rep.LargeScreenshot?.trim().length !== 0 &&  <Image src={rep.LargeScreenshot} width={250} height={250*3/4} alt=''/>}
                       
                     </CardTitle>
                   </CardHeader>
@@ -73,7 +73,7 @@ function AnalysisCard({rep}: Props) {
                       
                       {rep.GlobalCategoryRank && <span className='flex items-center justify-center flex-col gap-1 border-2 rounded-md border-[white] w-[130px] p-3'>
                         <span className='font-bold text-lg'>
-                            #{JSON.stringify(rep.GlobalCategoryRank.Rank)}
+                            #{JSON.stringify((rep.GlobalCategoryRank as unknown as {Rank:string}).Rank)}
                         </span>
                         <span className='text-sm mt-[-0.5rem]'>
                             🌐 Global category rank.
@@ -97,14 +97,17 @@ function AnalysisCard({rep}: Props) {
                         </span>
                       </span>}
                       
-                      {rep.totalVisits && <span className='flex items-center justify-center flex-col gap-1 border-2 rounded-md border-[white] w-[130px] p-3'>
-                        <span className='font-bold text-lg'>
-                            {formatNumber(rep.totalVisits)}
-                        </span>
-                        <span className='text-sm mt-[-0.5rem]'>
+                     {rep.totalVisits && (
+                        <span className='flex items-center justify-center flex-col gap-1 border-2 rounded-md border-[white] w-[130px] p-3'>
+                          <span className='font-bold text-lg'>
+                            {formatNumber(rep.totalVisits || 0)} 
+                          </span>
+                          <span className='text-sm mt-[-0.5rem]'>
                             👥 Visits.
+                          </span>
                         </span>
-                      </span>}
+                      )}
+
                       </div>
                   </CardContent>
             </Card>
@@ -160,7 +163,7 @@ function AnalysisCard({rep}: Props) {
                   <span className='font-semibold mt-[-0.6rem] text-xs'>
                     {ss.Title}
                   </span>
-                 {ss.Thumbnail && ss.Thumbnail.trim().length !== 0 && <Image alt='' src={ss.Thumbnail} width={200} height={200*4/3} />}
+                 {ss.Thumbnail && ss.Thumbnail?.trim().length !== 0 && <Image alt='' src={ss.Thumbnail} width={200} height={200*4/3} />}
                   <span className='text-xs font-semibold'>
                     {ss.Description}
                   </span>
@@ -191,7 +194,7 @@ function AnalysisCard({rep}: Props) {
   )
 }
 
-export function AnalysisCardRenderer({reps}:{reps:(SiteData& {similarSites:SimilarSite[]})[]}) {
+export function AnalysisCardRenderer({reps}:{reps:(SiteData & {similarSites:SimilarSite[]})[]}) {
     return (
         <div className='flex flex-wrap gap-5' >
             {reps.map(rep=>

@@ -70,6 +70,10 @@ export type SiteData = {
   EstimatedMonthlyVisits: EstimatedMonthlyVisits; //done
   TrafficSources: TrafficSources; //done
   TopKeywords: Keyword[];  //done
+
+  tags:unknown;
+  similarSites:unknown; //done
+  totalVisits:number | null; //done
 };
 
 
@@ -87,5 +91,8 @@ export interface SimilarSite {
 
 export interface SimilarSiteData {
   TopCountryRank: number;
+  Tags:unknown;
+  TotalVisits:unknown;
+  Redirect:unknown;
   SimilarSites: SimilarSite[];
 }

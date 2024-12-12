@@ -1,5 +1,4 @@
 import { Metadata } from "next"
-import Image from "next/image"
 
 import { CalendarDateRangePicker } from "./components/date-range-picker"
 import { MainNav } from "./components/main-nav"

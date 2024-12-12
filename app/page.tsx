@@ -1,11 +1,11 @@
 'use client'
-import { sendMessageToQueue } from "./amq";
+import { sendMessageToQueue } from "./actions/amq";
 import HomePageForm from "@/components/HomePageForm";
 import {
   SignIn,
 } from '@clerk/nextjs'
 import { useEffect, useState } from "react";
-import { setGetUser } from "./clerk.functions";
+import { setGetUser } from "./actions/clerk.functions";
 import { User } from "@prisma/client";
 import { useRouter } from "next/navigation";
 export default function Home() {
@@ -18,7 +18,7 @@ export default function Home() {
     <div className="w-screen h-screen flex items-center justify-center">
       {!user ? 
         <SignIn/> :
-        <HomePageForm user={user} onSubmit={(v)=>sendMessageToQueue(JSON.stringify({prompt:JSON.stringify(v),userId:user.id}),user.id).then(()=>router.reload())}/>
+        <HomePageForm user={user} onSubmit={(v)=>sendMessageToQueue(JSON.stringify({prompt:JSON.stringify(v),userId:user.id}),user.id).then(()=>router.refresh())}/>
       }
     </div>
   );
