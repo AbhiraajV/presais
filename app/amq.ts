@@ -38,10 +38,12 @@ export const sendMessageToQueue = async (message: string,userId:string): Promise
     });
 
     console.log(`Message sent to queue: ${QUEUE_NAME}`);
-    prisma.report.create({
+    await prisma.user.update({
       data:{
-        data:'',
-        userId
+        lastRequest:new Date(Date.now()).toISOString(),
+      },
+      where:{
+        id:userId,
       }
     })
   } catch (error) {

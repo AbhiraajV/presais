@@ -4,7 +4,7 @@ import { SimilarSiteData, SiteData } from '@/types';
 import { AnalysisCardRenderer } from '@/components/report/AnalysisCard';
 
 async function Page({ params }: { params: { reportid: string } }) {
-    const reportId = await params.reportid;
+    const reportId = (params as { reportid: string }).reportid;
     const report = await prisma.report.findFirst({
         where:{
             id:reportId
@@ -36,7 +36,7 @@ async function Page({ params }: { params: { reportid: string } }) {
         analysis_report[ind] = {...analysis_report[ind],totalVisits:v.TotalVisits,similarSites:v.SimilarSites,tags:v.Tags}
     })
     return (
-        <div className='bg-[#282828] text-white w-screen flex flex-wrap border-2 border-white h-screen overflow-y-scroll overflow-x-hidden '>
+        <div className='bg-[#282828] text-white w-screen flex flex-wrap h-screen overflow-y-scroll overflow-x-hidden '>
            {/* <div className='flex gap-5 items-center justify-center '>
             <span className='text-2xl mb-5 font-extrabold border-b-4'>
                 Competitor's Analysis Reports

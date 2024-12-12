@@ -7,16 +7,18 @@ import {
 import { useEffect, useState } from "react";
 import { setGetUser } from "./clerk.functions";
 import { User } from "@prisma/client";
+import { useRouter } from "next/navigation";
 export default function Home() {
   const [user,setUser] = useState<User | null>(null)
   useEffect(() => {
     setGetUser().then(u=>setUser(u))
   }, [])
+  const router = useRouter();
   return (
     <div className="w-screen h-screen flex items-center justify-center">
       {!user ? 
         <SignIn/> :
-        <HomePageForm onSubmit={(v)=>sendMessageToQueue(JSON.stringify({prompt:JSON.stringify(v),userId:user.id}),user.id)}/>
+        <HomePageForm user={user} onSubmit={(v)=>sendMessageToQueue(JSON.stringify({prompt:JSON.stringify(v),userId:user.id}),user.id).then(()=>router.reload())}/>
       }
     </div>
   );
