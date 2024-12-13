@@ -17,7 +17,7 @@ type Props = {rep:SiteData & {similarSites:SimilarSite[]}}
 export function ReportTabs({rep}:Props) {
   return (
     <Tabs  defaultValue="similar" className="w-full mt-[1rem] bg-transparent">
-      <TabsList className="flex sm:flex-row flex-wrap sm:mb-0 mb-[2rem] w-full bg-transparent items-center justify-center ">
+      <TabsList className="border-1 border-white flex sm:flex-row flex-wrap sm:mb-0 mb-[2rem] w-full bg-transparent items-center justify-center ">
         <TabsTrigger value="geo">Geo-wise</TabsTrigger>
         <TabsTrigger value="traffic">Traffic</TabsTrigger>
         <TabsTrigger value="visits">Users</TabsTrigger>

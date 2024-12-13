@@ -33,10 +33,10 @@ export default function KWTable({ data }: SmallTableProps) {
       <TableBody>
         {data.map((item, index) => (
           <TableRow key={index}>
-            <TableCell>{item?.Name}</TableCell>
-            <TableCell>${item?.EstimatedValue ?? 'N/A'}</TableCell>
-            <TableCell>{item?.Volume}</TableCell>
-            <TableCell>${item?.Cpc ?? 'N/A'}</TableCell>
+            <TableCell className='max-w-[25%]'>{item?.Name}</TableCell>
+            <TableCell className='max-w-[25%]'>${item?.EstimatedValue ?? 'N/A'}</TableCell>
+            <TableCell className='max-w-[25%]'>{item?.Volume}</TableCell>
+            <TableCell className='max-w-[25%]'>${item?.Cpc ?? 'N/A'}</TableCell>
           </TableRow>
         ))}
       </TableBody>

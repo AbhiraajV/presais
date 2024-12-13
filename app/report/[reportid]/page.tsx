@@ -46,11 +46,11 @@ async function Page(props: { params: tParams }) {
             </span> */}
       <BuyMeACookie className="fixed z-[9999] top-[0px] right-0"/>
             
-            <div className="p-6 max-w-md">
-                <div className="text-xsm font-extrabold underline text-gray-200">
+            <div className="p-2 max-w-md">
+                {/* <div className="text-xsm font-extrabold underline text-gray-200">
                 your prompt:
                     
-                </div>
+                </div> */}
                 <div className="text-2xl font-extrabold text-white mb-2">
                     {name}
                 </div>
