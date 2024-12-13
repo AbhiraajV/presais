@@ -3,13 +3,12 @@ import prisma from '@/prisma'
 import { SimilarSite, SimilarSiteData, SiteData } from '@/types';
 import { AnalysisCardRenderer } from '@/components/report/AnalysisCard';
 import BuyMeACookie from '@/components/BuyMeACoffee';
-type tParams = Promise<{ reportId: string }>;
+type tParams = Promise<{ reportid: string }>;
 async function Page(props: { params: tParams }) {
     const out = await props.params;
-  const reportId = out.reportId;
     const report = await prisma.report.findFirst({
         where:{
-            id:reportId
+            id:out.reportid
         }
     })
     if(!report) return;
