@@ -33,34 +33,37 @@ async function Page(props: { params: tParams }) {
         analysis_report[ind] = {...analysis_report[ind],totalVisits:(v.TotalVisits as number),similarSites:v.SimilarSites,tags:v.Tags}
     })
     return (
-        <div className='bg-[#282828] relative text-white w-screen flex flex-wrap h-screen overflow-y-scroll overflow-x-hidden '>
-           {/* <div className='flex gap-5 items-center justify-center '>
-            <span className='text-2xl mb-5 font-extrabold border-b-4'>
-                Competitor's Analysis Reports
-            </span>
+    //     <div className='bg-[#282828] relative text-white w-screen flex flex-wrap h-screen overflow-y-scroll overflow-x-hidden '>
+    //        {/* <div className='flex gap-5 items-center justify-center '>
+    //         <span className='text-2xl mb-5 font-extrabold border-b-4'>
+    //             Competitor's Analysis Reports
+    //         </span>
             
-            </div>  */}
-            {/* <span className='text-2xl font-extrabold border-b-4'>
-                Competitors' Rival Reports
-            </span> */}
-      <BuyMeACookie className="fixed z-[9999] top-[0px] right-0"/>
+    //         </div>  */}
+    //         {/* <span className='text-2xl font-extrabold border-b-4'>
+    //             Competitors' Rival Reports
+    //         </span> */}
+    //   <BuyMeACookie className="fixed z-[9999] top-[0px] right-0"/>
             
-            <div className="p-6 max-w-md">
-                <div className="text-xsm font-extrabold underline text-gray-200">
-                your prompt:
+    //         <div className="p-6 max-w-md">
+    //             <div className="text-xsm font-extrabold underline text-gray-200">
+    //             your prompt:
                     
-                </div>
-                <div className="text-2xl font-extrabold text-white mb-2">
-                    {name}
-                </div>
-                <div className="text-sm font-light text-gray-200">
-                    {description}
-                </div>
-            </div>
+    //             </div>
+    //             <div className="text-2xl font-extrabold text-white mb-2">
+    //                 {name}
+    //             </div>
+    //             <div className="text-sm font-light text-gray-200">
+    //                 {description}
+    //             </div>
+    //         </div>
 
-            <AnalysisCardRenderer reps={analysis_report as unknown as (SiteData & {similarSites:SimilarSite[]})[]}/>
-           
-        </div>
+    
+    //     </div>
+    <div className="min-h-screen bg-background p-0">
+         <AnalysisCardRenderer reps={analysis_report as (SiteData & {similarSites:SimilarSite[]})[]}/>
+      {/* <AnalysisCardRenderer reps={reps} /> */}
+    </div>
     )
 }
 

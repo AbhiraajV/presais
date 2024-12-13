@@ -1,7 +1,7 @@
 "use client"
 
 import * as React from "react"
-import { Pie, PieChart, Cell } from "recharts"
+import { Pie, PieChart, Cell, Legend } from "recharts"
 
 import {
   Card,
@@ -38,7 +38,7 @@ const chartConfig: ChartConfig = {
   Mail: { label: "Mail", color: "hsl(var(--chart-3))" },
   Referrals: { label: "Referrals", color: "hsl(var(--chart-4))" },
   Search: { label: "Search", color: "hsl(var(--chart-5))" },
-  Direct: { label: "Direct", color: "hsl(var(--chart-6))" },
+  Direct: { label: "Direct", color: "purple" },
 };
 
 const COLORS = Object.values(chartConfig).map(config => config.color).filter(Boolean) as string[];
@@ -62,43 +62,48 @@ export default function TrafficSourcesChart({ data }: TrafficSourcesChartProps) 
   }, [data])
 
   return (
-    <Card className="flex w-[100%] bg-[#282828] text-white border-none flex-col">
+    <Card className="flex w-[100%] bg-[#282828] text-white mt-[0.6rem] border-none flex-col">
       <CardHeader className="items-start pb-0">
-        <CardTitle className="text-md font-extrabold">Traffic Sources</CardTitle>
-        <CardDescription>Distribution of visitor traffic</CardDescription>
       </CardHeader>
       <CardContent className="flex-1  pb-0">
         <ChartContainer
-          config={chartConfig}
-          className="mx-auto"
-        >
-          <PieChart className="w-[100%]">
-            <ChartTooltip
-              cursor={false}
-              content={<ChartTooltipContent hideLabel />}
-            />
-            <Pie
-              data={chartData}
-              dataKey="value"
-              nameKey="name"
-              innerRadius={60}
-              outerRadius={80}
-              strokeWidth={5}
-              paddingAngle={5}
-            >
-              {chartData.map((entry, index) => (
-                <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
-              ))}
-             
-            </Pie>
-          </PieChart>
-        </ChartContainer>
+  config={chartConfig}
+  className="mx-auto"
+>
+  <PieChart className="w-[100%]">
+    <ChartTooltip
+      cursor={false}
+      content={<ChartTooltipContent hideLabel />}
+    />
+    <Pie
+      data={chartData}
+      dataKey="value"
+      nameKey="name"
+      innerRadius={60}
+      outerRadius={80}
+      strokeWidth={5}
+      paddingAngle={5}
+      legendType="circle"
+    >
+      {chartData.map((entry, index) => (
+        <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+      ))}
+    </Pie>
+    <Legend
+      align="center" 
+      verticalAlign="bottom" 
+      layout="horizontal" 
+      iconType="circle" 
+    />
+  </PieChart>
+</ChartContainer>
+
       </CardContent>
       <CardFooter className="flex-col gap-2 text-sm">
         <div className="flex items-center gap-2 font-medium leading-none">
           Maximum traffic comes from: {maxTrafficSource.source}
         </div>
-        <div className="leading-none text-muted-foreground">
+        <div className="leading-none text-white">
           {((maxTrafficSource.value / totalVisitors) * 100).toFixed(1)}% of total traffic
         </div>
       </CardFooter>

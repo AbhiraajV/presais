@@ -60,12 +60,12 @@ export default function DynamicMVAreaChart({ data }: DynamicAreaChartProps) {
   const percentageChange = ((latestMonth.visits - previousMonth.visits) / previousMonth.visits) * 100;
 
   return (
-    <Card className='bg-[#282828] w-full text-white border-none'>
+    <Card className='bg-[#282828] mt-[-1rem] pt-[-1rem] w-full text-white border-none'>
       <CardHeader>
-        <CardTitle className='text-md font-extrabold'>Monthly visits</CardTitle>
+        {/* <CardTitle className='text-md font-extrabold'>Monthly visits</CardTitle>
         <CardDescription>
           Showing estimated monthly visits
-        </CardDescription>
+        </CardDescription> */}
       </CardHeader>
       <CardContent>
         <ChartContainer config={chartConfig}>

@@ -72,7 +72,7 @@ export type SiteData = {
   TopKeywords: Keyword[];  //done
 
   tags:unknown;
-  similarSites:unknown; //done
+  similarSites:SimilarSite[]; //done
   totalVisits:number | null; //done
 };
 
