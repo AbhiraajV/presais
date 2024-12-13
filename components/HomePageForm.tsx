@@ -45,9 +45,10 @@ export default function HomePageForm({  onSubmit,user }: CardWithFormProps) {
     setCount(2)
   }
 
+  const TIME = 15 * 60 * 1000
   function startTimer(targetTime: string) {
     const targetDate = new Date(targetTime);
-    const endDate = new Date(targetDate.getTime() + 24 * 60 * 60 * 1000);
+    const endDate = new Date(targetDate.getTime() + TIME);
 
     function updateTimer() {
       const now = new Date();
@@ -74,7 +75,7 @@ export default function HomePageForm({  onSubmit,user }: CardWithFormProps) {
     const currentDate = new Date();
     const timeDifference = currentDate.getTime() - givenDate.getTime();
 
-    return timeDifference >= 24 * 60 * 60 * 1000;
+    return timeDifference >= TIME;
   }
   React.useEffect(() => {
     if(user.lastRequest) startTimer(user.lastRequest.toString())
@@ -82,7 +83,7 @@ export default function HomePageForm({  onSubmit,user }: CardWithFormProps) {
   
   return (
     <Card className="relative">
-      <BuyMeACookie className="absolute top-[-60px] left-0"/>
+      <BuyMeACookie className="absolute top-[-40px] left-0"/>
         <div className="absolute top-2 right-2 flex gap-1 items-center justify-center">
       <UserButton/>
       </div>
@@ -161,7 +162,7 @@ export default function HomePageForm({  onSubmit,user }: CardWithFormProps) {
         <Button variant="outline" onClick={handleClear}>Clear</Button>
         <Button disabled={name?.trim().length === 0 || saasDescription?.trim().length <= 2}  type="submit" form="saas-form">Generate</Button>
       </CardFooter>}
-      <CardFooter className="flex flex-col items-start justify-start">
+      <CardFooter className="flex items-start justify-start gap-5">
         <Link className="text-sm font-bold text-blue-600 underline" href={'/report/b89872c5-a74b-4cd4-bba2-18dd46405615'}>
           Example report #1
         </Link>
