@@ -17,13 +17,13 @@ type Props = {rep:SiteData & {similarSites:SimilarSite[]}}
 export function ReportTabs({rep}:Props) {
   return (
     <Tabs  defaultValue="similar" className="w-full mt-[1rem] bg-transparent">
-      <TabsList className="border-1 border-white flex sm:flex-row flex-wrap sm:mb-0 mb-[2rem] w-full bg-transparent items-center justify-center ">
-        <TabsTrigger value="geo">Geo-wise</TabsTrigger>
-        <TabsTrigger value="traffic">Traffic</TabsTrigger>
-        <TabsTrigger value="visits">Users</TabsTrigger>
+      <TabsList className="border-2 border-white flex flex-row sm:mb-0 mb-[2rem] bg-transparent items-start justify-start w-fit">
+        <TabsTrigger className="px-3 md:px-2 text-xs hover:bg-[#ffffffbf] text-white font-extrabold " value="geo">Geo-wise</TabsTrigger>
+        <TabsTrigger className="px-3 md:px-2 text-xs hover:bg-[#ffffffbf] hover:text-black text-white font-extrabold " value="traffic">Traffic</TabsTrigger>
+        <TabsTrigger className="px-3 md:px-2 text-xs hover:bg-[#ffffffbf] hover:text-black text-white font-extrabold " value="visits">Users</TabsTrigger>
 
-        <TabsTrigger value="keywords">Keywords</TabsTrigger>
-        <TabsTrigger value="similar">Rivals</TabsTrigger>
+        <TabsTrigger className="px-3 md:px-2 text-xs hover:bg-[#ffffffbf] hover:text-black text-white font-extrabold " value="keywords">Keywords</TabsTrigger>
+        <TabsTrigger className="px-3 md:px-2 text-xs hover:bg-[#ffffffbf] hover:text-black text-white font-extrabold " value="similar">Rivals</TabsTrigger>
 
       </TabsList>
       <TabsContent className='max-h-[300px] overflow-y-auto' value="geo">
@@ -51,7 +51,7 @@ export function ReportTabs({rep}:Props) {
       
       <TabsContent className="flex flex-col gap-2 max-h-[300px] overflow-y-auto" value="similar">
         {
-            rep.similarSites.map(s=>(
+            rep?.similarSites?.map(s=>(
                 <div key={s.Site} className="flex gap-1 p-1 border-2 border-white rounded-sm justify-center items-center">
                     <Image src={s.Thumbnail} width={125} height={125} alt=""/>
                     <div className="flex flex-col gap-1">

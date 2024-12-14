@@ -92,6 +92,7 @@ export default function TrafficSourcesChart({ data }: TrafficSourcesChartProps) 
       verticalAlign="bottom" 
       layout="horizontal" 
       iconType="circle" 
+      className="flex items-start justify-start"
     />
   </PieChart>
 </ChartContainer>

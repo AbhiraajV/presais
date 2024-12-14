@@ -32,8 +32,11 @@ function AnalysisCard({rep}: Props) {
 >
   {rep.Description}
 </span>
+<div className='flex w-full items-center justify-center'>
+
 
                    {rep.LargeScreenshot && rep.LargeScreenshot?.trim().length !== 0 &&  <Image src={rep.LargeScreenshot} width={250} height={250*3/4} alt=''/>}
+</div>
                       
                     </CardTitle>
                   </CardHeader>

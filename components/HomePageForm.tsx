@@ -82,8 +82,8 @@ export default function HomePageForm({  onSubmit,user }: CardWithFormProps) {
   }, [user])
   
   return (
-    <Card className="relative">
-      <BuyMeACookie className="absolute top-[-40px] left-0"/>
+    <Card className="relative md:border-2 md:outline-2 shadow-sm border-0 outline-0">
+      <BuyMeACookie className="absolute bottom-[0px] right-0"/>
         <div className="absolute top-2 right-2 flex gap-1 items-center justify-center">
       <UserButton/>
       </div>
@@ -158,11 +158,11 @@ export default function HomePageForm({  onSubmit,user }: CardWithFormProps) {
           </div>
         </form>
       </CardContent>}
-     {(!user.lastRequest || has24HoursPassed(user.lastRequest?.toString())) &&  <CardFooter className="flex justify-between">
-        <Button variant="outline" onClick={handleClear}>Clear</Button>
-        <Button disabled={name?.trim().length === 0 || saasDescription?.trim().length <= 2}  type="submit" form="saas-form">Generate</Button>
+     {(!user.lastRequest || has24HoursPassed(user.lastRequest?.toString())) &&  <CardFooter className="flex justify-start gap-3">
+        <Button className="bg-blue-600 w-[200px]" disabled={name?.trim().length === 0 || saasDescription?.trim().length <= 2}  type="submit" form="saas-form">Generate</Button>
+        <Button className="bg-red-400 text-white" variant="outline" onClick={handleClear}>Clear</Button>
       </CardFooter>}
-      <CardFooter className="flex items-start justify-start gap-5">
+      {/* <CardFooter className="flex items-start justify-start gap-5">
         <Link className="text-sm font-bold text-blue-600 underline" href={'/report/b89872c5-a74b-4cd4-bba2-18dd46405615'}>
           Example report #1
         </Link>
@@ -170,7 +170,7 @@ export default function HomePageForm({  onSubmit,user }: CardWithFormProps) {
         <Link className="text-sm font-bold text-blue-600 underline" href={'/report/a26bc2f5-362c-49db-b419-27e50219bfd0'}>
           Example report #2
         </Link>
-      </CardFooter>
+      </CardFooter> */}
       <CardFooter className="text-xs font-light text-gray-500">
         *all reports are shareable
       </CardFooter>
