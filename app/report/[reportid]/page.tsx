@@ -1,11 +1,11 @@
 import React from 'react'
 import prisma from '@/prisma'
-import { SimilarSite, SimilarSiteData, SiteData } from '@/types';
+import { SimilarSite, SimilarSiteData, SiteData } from '@/app/types/bas';
 import { AnalysisCardRenderer } from '@/components/report/AnalysisCard';
 import BuyMeACookie from '@/components/BuyMeACoffee';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { ValidatorPage } from '@/validator-components/ValidatorPage';
 import { EnhancedSampleData } from '@/app/types';
+import { ValidatorPage } from '@/components/validator-components/ValidatorPage';
 type tParams = Promise<{ reportid: string }>;
 async function Page(props: { params: tParams }) {
     const out = await props.params;
@@ -14,7 +14,7 @@ async function Page(props: { params: tParams }) {
             id:out.reportid
         }
     })
-    if(!report) return;
+    if(!report) return "no report with this id";
     const {name,description} = JSON.parse(report.prompt ?? '{}') as { name: string, description: string};
     const {analysis:{analysis_report,competition_report},insights} = report.data as unknown as {
         analysis:{

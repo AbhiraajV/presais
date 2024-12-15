@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { setGetUser } from "./actions/clerk.functions";
 import { User } from "@prisma/client";
 import { RedirectToSignIn } from "@clerk/nextjs";
-import HomePageForm from "@/home-components/HomePageForm";
+import HomePageForm from "@/components/home-components/HomePageForm";
 export default function Home() {
   const [user,setUser] = useState<User | null | 'no user'>(null)
   useEffect(() => {
