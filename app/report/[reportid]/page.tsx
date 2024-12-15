@@ -43,7 +43,7 @@ async function Page(props: { params: tParams }) {
                 <div className="text-2xl font-extrabold text-white mb-2">
                     {name}
                 </div>
-                <div className="text-sm font-light text-gray-200">
+                <div className="text-sm font-light md:w-[80vw] w-[96vw] text-gray-200">
                     {description}
                 </div>
             </div>

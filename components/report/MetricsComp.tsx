@@ -1,7 +1,7 @@
 "use client";
 
+import { SiteData } from "@/app/types/bas";
 import { Badge } from "@/components/ui/badge";
-import { SiteData } from "@/types";
 import { Globe, TrendingUp, Users } from "lucide-react";
 
 interface SiteMetricsProps {

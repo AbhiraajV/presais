@@ -1,9 +1,10 @@
 import React from 'react'
 import { Card, CardContent, CardHeader, CardTitle } from '../ui/card'
 import Image from 'next/image'
-import {  SimilarSite, SiteData } from '@/types'
+// import {  SimilarSite, SiteData } from '@/types'
 import { SiteMetrics } from './MetricsComp'
 import { ReportTabs } from './Tabs'
+import { SimilarSite, SiteData } from '@/app/types/bas'
 
 type Props = {rep:SiteData & {similarSites:SimilarSite[]}}
 
