@@ -6,7 +6,6 @@ import {
   Globe2,
   Target,
   TrendingUp,
-  Users,
   Search,
   LineChart,
   PieChart,
