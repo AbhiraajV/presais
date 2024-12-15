@@ -15,8 +15,8 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "Presais",
-  description: "AI-powered competition analysis for your idea.",
+  title: "Validate a saas",
+  description: "Get your saas validated in seconds, with AI",
 };
 
 export default function RootLayout({
