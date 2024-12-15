@@ -44,7 +44,7 @@ export default function HomePageForm({  onSubmit,user }: CardWithFormProps) {
     setCount(2)
   }
 
-  const TIME = 15 * 60 * 1000
+  const TIME = 60 * 60 * 1000
   function startTimer(targetTime: string) {
     const targetDate = new Date(targetTime);
     const endDate = new Date(targetDate.getTime() + TIME);
