@@ -4,13 +4,13 @@ import {
   TabsList,
   TabsTrigger,
 } from "@/components/ui/tabs"
-import { SimilarSite, SiteData } from "@/types"
 import GeoChart from "../charts/geo"
 import TrafficSourcesChart from "../charts/traffic.pie"
 import DynamicMVAreaChart from "../charts/monthlyvisit"
 import KWTable from "./KeywordsTable"
 import Image from "next/image"
 import { SiteMetrics } from "./MetricsComp"
+import { SimilarSite, SiteData } from "@/app/types/bas"
 
 type Props = {rep:SiteData & {similarSites:SimilarSite[]}}
 
