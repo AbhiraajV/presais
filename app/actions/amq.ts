@@ -2,7 +2,7 @@
 import amqp, { Channel, Connection } from 'amqplib';
 import prisma from '@/prisma';
 const RABBITMQ_URL = process.env.AMQ_URI!;
-const QUEUE_NAME = 'single';
+const QUEUE_NAME = 'double';
 
 let connection: Connection | null = null;
 let channel: Channel | null = null;

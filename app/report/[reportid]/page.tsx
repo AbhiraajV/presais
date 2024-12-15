@@ -1,10 +1,11 @@
 import React from 'react'
 import prisma from '@/prisma'
-import { SampleData, SimilarSite, SimilarSiteData, SiteData } from '@/types';
+import { SimilarSite, SimilarSiteData, SiteData } from '@/types';
 import { AnalysisCardRenderer } from '@/components/report/AnalysisCard';
 import BuyMeACookie from '@/components/BuyMeACoffee';
-import ValidatorPage from '@/validator-components/ValidatorPage';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { ValidatorPage } from '@/validator-components/ValidatorPage';
+import { EnhancedSampleData } from '@/app/types';
 type tParams = Promise<{ reportid: string }>;
 async function Page(props: { params: tParams }) {
     const out = await props.params;
@@ -20,7 +21,7 @@ async function Page(props: { params: tParams }) {
             analysis_report: SiteData[],
             competition_report: SimilarSiteData[],
         },
-        insights?:SampleData,
+        insights?:EnhancedSampleData,
         competitionsList: {
             Competitors:{
             Name:string,
@@ -53,7 +54,7 @@ async function Page(props: { params: tParams }) {
       </TabsList>
       
       <TabsContent className='bg-gray-100  relative text-[#282828]' value="val">
-                {insights ? <ValidatorPage sampleData={insights}/> : 'no insights'}
+                {insights ? <ValidatorPage data={insights}/> : 'no insights'}
       </TabsContent>
       
       <TabsContent className='flex flex-col items-start justify-start' value="comp">

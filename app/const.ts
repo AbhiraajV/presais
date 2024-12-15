@@ -1,4 +1,6 @@
-export const sampleData = {
+import { EnhancedSampleData } from "./types";
+
+export const sampleData: EnhancedSampleData = {
   ideaAssessment: {
     businessExistence: {
       status: "unique_twist",
@@ -28,17 +30,51 @@ export const sampleData = {
       competitorTrends: {
         search: {
           description: "Strong organic search presence",
-          percentage: 65
+          percentage: 20
         },
         direct: {
           description: "Growing brand recognition",
-          percentage: 35
-        }
+          percentage: 20
+        },
+        social:{
+          description: "Growing brand recognition",
+          percentage: 20,
+        },
+        referals:{
+          description: "Growing brand recognition",
+          percentage: 20,
+        },
+        mails:{
+          description: "Growing brand recognition",
+          percentage: 20,
+        },
       },
       recommendation: "Focus on SEO and content marketing"
     },
     globalAndLocalCompetitorHeatmap: {
       dominantCountries: ["USA", "UK", "Canada", "Australia"],
+      countryWiseDistribution: [
+        {
+          country: "USA",
+          trafficShare: 45,
+          competitors: ["Competitor A", "Competitor B", "Competitor C"]
+        },
+        {
+          country: "UK",
+          trafficShare: 25,
+          competitors: ["Competitor B", "Competitor D"]
+        },
+        {
+          country: "Canada",
+          trafficShare: 15,
+          competitors: ["Competitor A", "Competitor C"]
+        },
+        {
+          country: "Australia",
+          trafficShare: 15,
+          competitors: ["Competitor B", "Competitor E"]
+        }
+      ],
       recommendation: "Focus on English-speaking markets initially"
     },
     estimatedMarketShareProjection: {
@@ -73,6 +109,15 @@ export const sampleData = {
         budget: "$2,000/month",
         focus: "Brand awareness"
       }
+    },
+    marketSizeAnalysis: {
+      totalMarketSize: 5000000000, // $5B
+      monthlyActiveUsers: 2000000,
+      growthTrend: {
+        description: "Steady growth in SaaS adoption across industries",
+        rate: 15.5 // 15.5% growth rate
+      },
+      recommendation: "Focus on rapid market penetration while the market is expanding"
     }
   }
 };

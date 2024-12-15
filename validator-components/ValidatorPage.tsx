@@ -1,61 +1,51 @@
-import React from 'react'
-import { KeywordAnalysis } from './KeywordAnalysis'
-import { MarketShareChart } from './MarketShareChart'
-import { PerformanceScorecard } from './PerformanceScorecard'
-import { TrafficAnalysis } from './TrafficAnalysis'
-import { AdBudgetRecommendations } from './AdBudgetRecommendations'
-import { Badge } from '@/components/ui/badge'
-import { Sparkles } from 'lucide-react'
-import { SampleData } from '@/types'
+import { EnhancedSampleData } from "@/app/types";
+import { MarketSizeAnalysis } from "./MarketSizeAnalysis";
+import { GlobalCompetitorMap } from "./GlobalCompetitorMap";
+import { KeywordAnalysis } from "./KeywordAnalysis";
+import { MarketShareChart } from "./MarketShareChart";
+import { PerformanceScorecard } from "./PerformanceScorecard";
+import { TrafficAnalysis } from "./TrafficAnalysis";
+import { AdBudgetRecommendations } from "./AdBudgetRecommendations";
 
+export function ValidatorPage({data}:{data:EnhancedSampleData}) {
+  const { ideaAssessment } = data;
+  const { 
+    competitorAnalysis,
+    marketSizeAnalysis,
+    globalAndLocalCompetitorHeatmap,
+    trafficSourceOptimizationSuggestions,
+    estimatedMarketShareProjection,
+    customSaaSPerformanceScore,
+    adBudgetRecommendations
+  } = ideaAssessment;
 
-export default function ValidatorPage({sampleData}:{sampleData:SampleData}) {
-    
-  const { ideaAssessment } = sampleData as SampleData;
-  const { keywordOpportunityInsights } = ideaAssessment.competitorAnalysis;
   return (
-    
+    <div className="min-h-screen bg-gray-50">
+      <div className="container mx-auto px-2 py-3">
+        <header className="mb-3">
+          <h1 className="text-xl font-extrabold text-gray-900">SaaS Competitor Analysis</h1>
+          <p className="text-xs font-medium text-gray-600">Market insights and competitive analysis</p>
+        </header>
 
-        <div className="container mx-auto px-2 py-4 flex flex-wrap gap-4">
-            <div className='flex flex-col items-start justify-start'>
-                <div className='flex items-center gap-1'>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+          {marketSizeAnalysis && <MarketSizeAnalysis {...marketSizeAnalysis} />}
+         {adBudgetRecommendations && <AdBudgetRecommendations {...adBudgetRecommendations} />}
 
-                <Sparkles className="w-4 h-4 text-blue-600" />
+         {competitorAnalysis && <KeywordAnalysis {...competitorAnalysis.keywordOpportunityInsights} />}
+         {globalAndLocalCompetitorHeatmap && <GlobalCompetitorMap {...globalAndLocalCompetitorHeatmap} />}
+         {customSaaSPerformanceScore && <PerformanceScorecard {...customSaaSPerformanceScore} />}
+         {trafficSourceOptimizationSuggestions && <TrafficAnalysis 
+            search={trafficSourceOptimizationSuggestions.competitorTrends.search}
+            direct={trafficSourceOptimizationSuggestions.competitorTrends.direct}
+            mail={trafficSourceOptimizationSuggestions.competitorTrends.mails}
+            referals={trafficSourceOptimizationSuggestions.competitorTrends.referals}
+            social={trafficSourceOptimizationSuggestions.competitorTrends.social}
+            recommendation={trafficSourceOptimizationSuggestions.recommendation}
+          />}
+         {estimatedMarketShareProjection && <MarketShareChart {...estimatedMarketShareProjection} />}
 
-                <span className='text-sm font-extrabold'>
-                    {ideaAssessment.businessExistence.description}
-                </span>
-                </div>
-                
-                <Badge variant={'outline'}>
-                    
-                    {ideaAssessment.businessExistence.status.replaceAll("_"," ")}
-                </Badge>
-
-            </div>
-          <KeywordAnalysis
-            summary={keywordOpportunityInsights.summary}
-            recommendedKeywords={keywordOpportunityInsights.recommendedKeywords}
-            topKeywords={keywordOpportunityInsights.topKeywords}
-            conclusion={keywordOpportunityInsights.conclusion}
-          />
-          <MarketShareChart 
-            competitors={ideaAssessment.estimatedMarketShareProjection.currentCompetitors}
-            potentialShare={ideaAssessment.estimatedMarketShareProjection.potentialShare}
-          />
-          <PerformanceScorecard
-            criteria={ideaAssessment.customSaaSPerformanceScore.criteria}
-            score={ideaAssessment.customSaaSPerformanceScore.score}
-          />
-          <TrafficAnalysis 
-            search={ideaAssessment.trafficSourceOptimizationSuggestions.competitorTrends.search}
-            direct={ideaAssessment.trafficSourceOptimizationSuggestions.competitorTrends.direct}
-            recommendation={ideaAssessment.trafficSourceOptimizationSuggestions.recommendation}
-          />
-          <AdBudgetRecommendations
-            searchAds={ideaAssessment.adBudgetRecommendations.searchAds}
-            socialMediaAds={ideaAssessment.adBudgetRecommendations.socialMediaAds}
-          />
         </div>
-  )
+      </div>
+    </div>
+  );
 }

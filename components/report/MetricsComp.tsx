@@ -29,10 +29,10 @@ export function SiteMetrics({
 }: SiteMetricsProps) {
   return (
     <div className="flex flex-wrap gap-2">
-      <Badge variant="secondary" className="flex items-center gap-1">
+      {globalRank && <Badge variant="secondary" className="flex items-center gap-1">
         <Globe className="h-4 w-4" />
-        Global Rank #{globalRank.Rank}
-      </Badge>
+        Global Rank #{globalRank?.Rank}
+      </Badge>}
       {
         countryRank && 
         <Badge variant="secondary" className="flex items-center gap-1">

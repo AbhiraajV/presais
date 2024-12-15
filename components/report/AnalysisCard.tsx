@@ -10,7 +10,7 @@ type Props = {rep:SiteData & {similarSites:SimilarSite[]}}
 function AnalysisCard({rep}: Props) {
     
     function getFlagEmoji(countryCode:string) {
-      return countryCode.toUpperCase().replace(/./g, char => 
+      return (countryCode ?? "US").toUpperCase().replace(/./g, char => 
           String.fromCodePoint(127397 + char.charCodeAt(0))
       );
     }
@@ -41,7 +41,7 @@ function AnalysisCard({rep}: Props) {
                     </CardTitle>
                   </CardHeader>
                   <CardContent className='p-2'>
-                      <SiteMetrics country={getFlagEmoji(rep.TopCountryShares[0].CountryCode)} countryRank={rep.CountryRank?.Rank} category={Array.from(new Set(rep.Category.split('/').map((c) => c.replaceAll('_', ' '))))[0]} categoryRank={rep.CategoryRank} globalRank={rep.GlobalRank} totalVisits={rep.totalVisits}/>
+                      <SiteMetrics country={getFlagEmoji(rep.TopCountryShares && rep.TopCountryShares[0]?.CountryCode)} countryRank={rep.CountryRank?.Rank} category={Array.from(new Set(rep?.Category?.split('/').map((c) => c.replaceAll('_', ' '))))[0]} categoryRank={rep.CategoryRank} globalRank={rep.GlobalRank} totalVisits={rep.totalVisits}/>
                       <ReportTabs rep={rep}/>
                   </CardContent>
             </Card>
@@ -51,7 +51,7 @@ function AnalysisCard({rep}: Props) {
 export function AnalysisCardRenderer({reps}:{reps:(SiteData & {similarSites:SimilarSite[]})[]}) {
     return (
         <div className='flex flex-wrap gap-5' >
-            {reps.map(rep=>
+            {reps.filter(r=>r.SiteName && r.SiteName.length > 0).map(rep=>
 
 <AnalysisCard key={rep.Title} rep={rep}/>
             )}
