@@ -3,8 +3,11 @@ import { sendMessageToQueue } from "./actions/amq";
 import { useEffect, useState } from "react";
 import { setGetUser } from "./actions/clerk.functions";
 import { User } from "@prisma/client";
-import { RedirectToSignIn } from "@clerk/nextjs";
+import {  SignInButton,  SignUpButton } from "@clerk/nextjs";
 import HomePageForm from "@/components/home-components/HomePageForm";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardFooter } from "@/components/ui/card";
+import Image from "next/image";
 export default function Home() {
   const [user,setUser] = useState<User | null | 'no user'>(null)
   useEffect(() => {
@@ -16,7 +19,6 @@ export default function Home() {
       setUser(u)
     })
   }, [])
-  if(user === 'no user') return <RedirectToSignIn/>
   return (
     <>
       {user ? 
@@ -24,7 +26,7 @@ export default function Home() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="text-center mb-12">
        
-          <h1 className="text-4xl font-extrabold tracking-tight text-gray-900 dark:text-white sm:text-5xl md:text-6xl">
+          <h1 className="text-3xl font-extrabold tracking-tight text-gray-900 dark:text-white sm:text-5xl md:text-6xl">
             <span className="block">Validate & Discover Your</span>
             <span className="block text-blue-600 dark:text-blue-400">SaaS Market Potential</span>
           </h1>
@@ -32,7 +34,42 @@ export default function Home() {
         
         <div className="flex justify-center">
           <div className="w-full max-w-2xl">
+            {user === 'no user' ? 
+            <Card className="w-full max-w-md mx-auto">
+      <CardContent className="pt-6">
+        <p className="text-center mb-6">
+          Creating a report is <span className="text-green-500 font-semibold">completely free</span>
+        </p>
+        <div className="flex justify-center space-x-4">
+          <Button variant="outline" className="w-1/2">
+            <SignUpButton>Sign Up</SignUpButton>
+          </Button>
+          <Button variant="default" className="w-1/2">
+            <SignInButton>Sign In</SignInButton>
+          </Button>
+        </div>
+      </CardContent>
+      <CardFooter className="flex justify-center">
+        
+<a
+      href="https://www.producthunt.com/posts/validate-a-saas?embed=true&utm_source=badge-featured&utm_medium=badge&utm_souce=badge-validate&#0045;a&#0045;saas"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="inline-block"
+    >
+      <Image
+      unoptimized
+        src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=707240&theme=light"
+        alt="Validate A SaaS - Validate before you Build with AI Powered market analysis | Product Hunt"
+        width={250}
+        height={54}
+      />
+    </a>      </CardFooter>
+    </Card>
+              :
+            
             <HomePageForm onSubmit={(v)=>sendMessageToQueue(JSON.stringify({prompt:JSON.stringify(v),userId:user.id}),user.id).then(()=>window.location.reload())} user={user} />
+            }
           </div>
         </div>
 

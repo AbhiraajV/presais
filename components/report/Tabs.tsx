@@ -53,7 +53,7 @@ export function ReportTabs({rep}:Props) {
         {
             rep?.similarSites?.map(s=>(
                 <div key={s.Site} className="flex gap-1 p-1 border-2 border-white rounded-sm justify-center items-center">
-                    <Image src={s.Thumbnail} width={125} height={125} alt=""/>
+                    <Image unoptimized src={s.Thumbnail} width={125} height={125} alt=""/>
                     <div className="flex flex-col gap-1">
                         <span className="text-sm font-extrabold">
                             {s.Site}
