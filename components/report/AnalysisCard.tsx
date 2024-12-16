@@ -36,7 +36,8 @@ function AnalysisCard({rep}: Props) {
 <div className='flex w-full items-center justify-center'>
 
 
-                   {rep.LargeScreenshot && rep.LargeScreenshot?.trim().length !== 0 &&  <Image src={rep.LargeScreenshot} width={250} height={250*3/4} alt=''/>}
+                   <Image src={rep.LargeScreenshot} width={250} height={250*3/4} alt='https://site-images.similarcdn.com/image?url=yourfacemetrics.com&t=1&s=1&h=4a497f5c9d45d9fe20a93934273d5eee79a7978c0b7dcc97a76d28abdb36ebc3
+'/>
 </div>
                       
                     </CardTitle>
