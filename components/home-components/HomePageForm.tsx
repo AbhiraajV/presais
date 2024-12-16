@@ -45,7 +45,7 @@ export default function HomePageForm({ onSubmit, user }: HomePageFormProps) {
 
           <CardHeader className="relative z-10">
             <CardTitle className="text-2xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-600">
-              SaaS Market & Competitor analysis report
+              SaaS Market & Competitor analysis form
             </CardTitle>
             <CardDescription>
               <div className="space-y-4">

@@ -27,9 +27,6 @@ export default function Home() {
             <span className="block">Validate & Discover Your</span>
             <span className="block text-blue-600 dark:text-blue-400">SaaS Market Potential</span>
           </h1>
-          <p className="mt-3 max-w-md mx-auto text-base text-gray-500 dark:text-gray-300 sm:text-lg md:mt-5 md:text-xl md:max-w-3xl">
-            Get detailed competitor analysis, market insights, and growth opportunities for your SaaS idea in minutes.
-          </p>
         </div>
         
         <div className="flex justify-center">
