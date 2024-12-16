@@ -19,7 +19,7 @@ export function SaasForm({ onSubmit }: SaasFormProps) {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    onSubmit({ name, description: saasDescription, count });
+    onSubmit({ name, description: saasDescription, count:10 });
   };
 
   const handleClear = () => {

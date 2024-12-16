@@ -81,7 +81,7 @@ export function TrafficAnalysis({ search, direct,social,mail,referals, recommend
         </div>
 
         <div className="bg-indigo-50 rounded p-2">
-          <p className="text-xs font-medium text-indigo-900">{recommendation}</p>
+          <p className="text-sm font-bold text-indigo-900">{recommendation}</p>
         </div>
       </div>
     </div>

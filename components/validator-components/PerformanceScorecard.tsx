@@ -21,8 +21,8 @@ export function PerformanceScorecard({ criteria, score }: SaaSPerformanceScore) 
 
         <div className="flex flex-col items-center justify-center bg-green-50 rounded p-2">
           <div className="text-3xl font-extrabold text-green-700">{score}</div>
-          <div className="text-xs font-bold text-green-600">/10</div>
-          <p className="mt-1 text-xs font-medium text-center">
+          <div className="text-md font-bold text-green-600">/10</div>
+          <p className="mt-1 text-md font-bold text-center">
             {score >= 8 ? 'Excellent potential!' : 
              score >= 6 ? 'Good opportunity' : 
              'Significant challenges'}

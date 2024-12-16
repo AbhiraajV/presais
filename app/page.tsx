@@ -23,6 +23,13 @@ export default function Home() {
     <main className="min-h-screen bg-gradient-to-b from-blue-50 to-white dark:from-gray-900 dark:to-gray-800">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="text-center mb-12">
+          <span className="text-4xl font-extrabold tracking-tight text-blue-600 dark:text-white sm:text-5xl md:text-6xl">
+            V
+          </span>
+          <span className="text-4xl font-extrabold tracking-tight text-gray-800 dark:text-white sm:text-5xl md:text-6xl">
+            aSaaS
+          </span>
+
           <h1 className="text-4xl font-extrabold tracking-tight text-gray-900 dark:text-white sm:text-5xl md:text-6xl">
             <span className="block">Validate & Discover Your</span>
             <span className="block text-blue-600 dark:text-blue-400">SaaS Market Potential</span>

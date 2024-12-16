@@ -15,7 +15,11 @@ export function KeywordAnalysis({
         <BarChart3 className="w-4 h-4 text-blue-600" />
         <h2 className="text-base font-bold">Keyword Analysis</h2>
       </div>
-      <p className="text-xs font-medium text-gray-600 mb-2">{summary}</p>
+      
+      <div className="p-2 bg-blue-50 rounded text-sm font-bold text-blue-800">
+        {conclusion}
+      </div>
+      
       
       <div className="grid grid-cols-1 gap-2 mb-2">
         <div>
@@ -58,11 +62,12 @@ export function KeywordAnalysis({
             </tbody>
           </table>
         </div>
+        
+      <div className="p-2 bg-blue-50 rounded text-sm font-bold text-blue-800">
+        {summary}
+      </div>
       </div>
       
-      <div className="p-2 bg-blue-50 rounded text-xs font-medium text-blue-800">
-        {conclusion}
-      </div>
     </div>
   );
 }

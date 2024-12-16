@@ -50,7 +50,7 @@ export function MarketSizeAnalysis({
       </div>
 
       <div className="bg-violet-50 rounded p-2 mt-2">
-        <AIIndicator className="text-xs font-medium text-violet-900">
+        <AIIndicator className="text-sm font-bold text-violet-900">
           {recommendation}
         </AIIndicator>
       </div>

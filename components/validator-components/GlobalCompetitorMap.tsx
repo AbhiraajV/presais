@@ -47,7 +47,7 @@ export function GlobalCompetitorMap({
       </div>
 
       <div className="bg-cyan-50 rounded p-2 mt-2">
-        <AIIndicator className="text-xs font-medium text-cyan-900">
+        <AIIndicator className="text-sm font-bold text-cyan-900">
           {recommendation}
         </AIIndicator>
       </div>

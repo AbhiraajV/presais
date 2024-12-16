@@ -35,16 +35,15 @@ export function MarketShareChart({ currentCompetitors, potentialShare }: MarketS
 
         <div className="bg-purple-50 p-2 rounded">
           <h3 className="text-xs font-bold mb-1">Potential Share</h3>
-          <p className="text-xs mb-2">{potentialShare.description}</p>
+      <p className="text-sm font-extrabold text-gray-600 mb-2">{potentialShare.description}</p>
+
           <div className="flex justify-between items-center">
             <div>
-              <p className="text-xs font-bold text-purple-700">{potentialShare.range.min}%</p>
-              <p className="text-xs text-purple-600">Min</p>
+              <p className="text-3xl font-extrabold text-purple-700">{potentialShare.range.min}%</p>
             </div>
             <div className="w-8 h-px bg-purple-300"></div>
             <div>
-              <p className="text-xs font-bold text-purple-700">{potentialShare.range.max}%</p>
-              <p className="text-xs text-purple-600">Max</p>
+              <p className="text-3xl font-extrabold text-purple-700">{potentialShare.range.max}%</p>
             </div>
           </div>
         </div>
