@@ -5,7 +5,6 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import { Slider } from "@/components/ui/slider";
 import { Rocket } from "lucide-react";
 
 interface SaasFormProps {
@@ -15,17 +14,16 @@ interface SaasFormProps {
 export function SaasForm({ onSubmit }: SaasFormProps) {
   const [name, setName] = React.useState("");
   const [saasDescription, setSaasDescription] = React.useState("");
-  const [count, setCount] = React.useState(2);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    if(name.trim().length<= 2 || saasDescription.trim().length<= 2 ) return;
     onSubmit({ name, description: saasDescription, count:10 });
   };
 
   const handleClear = () => {
     setName("");
     setSaasDescription("");
-    setCount(2);
   };
 
   return (
@@ -55,25 +53,6 @@ export function SaasForm({ onSubmit }: SaasFormProps) {
             rows={4}
             className="mt-1"
           />
-        </div>
-        <div>
-          <Label htmlFor="results" className="text-base font-semibold">
-            Number of competitors to analyze
-          </Label>
-          <div className="mt-2">
-            <Slider
-              id="results"
-              min={1}
-              max={5}
-              step={1}
-              value={[count]}
-              onValueChange={(value) => setCount(value[0])}
-              className="my-4"
-            />
-            <div className="text-center font-medium text-blue-600">
-              {count} competitor{count !== 1 ? "s" : ""}
-            </div>
-          </div>
         </div>
       </div>
 
